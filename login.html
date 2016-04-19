@@ -2,16 +2,13 @@
 <html lang="en">
 
 <head>
-  <title>Make it Social | Register</title>
+  <title>Make it Social | Login</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE-edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Register to manage your group at Make it Social the group booking platform.">
+  <meta name="description" content="Login to manage your group at Make it Social the group booking platform.">
   <meta name="author" content="Make it Social">
   <link rel="icon" href="/favicon.ico">
-  
-  <link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans'  rel='stylesheet' type='text/css'>
 
   <style>
     body {
@@ -74,11 +71,6 @@
       border: none;
       border-bottom: 1px solid #fff;
       color: #fff;
-    }
-    
-    .el.login {
-      background-color: #fff;
-      border: 3px dashed grey;
     }
     
     input,
@@ -144,7 +136,7 @@
       text-align: center;
     }
     
-    .sub {
+    .sub, .reset-form-sub {
       height: 60px;
       background-color: rgb(84, 46, 7);
       color: #fff;
@@ -219,9 +211,6 @@
     
     .reset svg {
       margin: 0 14px;
-    }
-    
-    svg {
       overflow: visible;
     }
     
@@ -237,15 +226,15 @@
       bottom: -6px;
     }
     
-    .login span {
-      margin-left: 34px;
-    }
-    
     .register {
       position: absolute;
       display: block;
       width: 200px;
       height: 60px;
+    }
+    
+    #reset-submit {
+      display: none;
     }
     
     @media (max-width: 910px) {
@@ -259,131 +248,135 @@
       }
     }
   </style>
+
 </head>
 
 <body>
   <div class="entire">
     <section class="loginreg">
-      
+
       <div class="form-prompt">
-        <span class="prompt-text">Create an account</span>
+        <span class="prompt-text">Login</span>
       </div>
-      
+
       <div class="fields">
         {{if .Error}}
         <p class="error" style="color:red">{{.Error}}</p>
         {{end}}
-        <form action="/register" method="post" class="main-form">
-        
+        <form action="/login" method="post" onsubmit="return onlogin()" class="main-form">
           <input type="hidden" name="csrf" value="{{.Csrf}}">
           <input type="hidden" name="redirect_to" value="{{.Redirect_to}}">
           <input type="hidden" name="app_id" value="{{.App_id}}">
-          <input type="hidden" name="lang" value="{{.Lang}}">
           <input type="hidden" name="theme" value="{{.Theme}}">
+          <input type="hidden" name="lang" value="{{.Lang}}">
 
           <div class="inputWrapper el">
             <label>{{trans "EMAIL"}}</label>
-            <input placeholder="{{trans " EMAIL "}}" type="email" name="username">
+            <input placeholder="{{trans " EMAIL "}}" type="email" name="username" id="id_email" onchange="email_change()">
           </div>
 
-          <div class="inputWrapper el login">
-            <a href="/login" id="id_a">
-            
-              <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg" style="fill: #615B5B"><path d="M1600 1405q0 120-73 189.5t-194 69.5h-874q-121 0-194-69.5t-73-189.5q0-53 3.5-103.5t14-109 26.5-108.5 43-97.5 62-81 85.5-53.5 111.5-20q9 0 42 21.5t74.5 48 108 48 133.5 21.5 133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5t-271.5 112.5-271.5-112.5-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5z"/></svg>
-
-              <span class="reg-text">Got a Make it Social account already?</span>
-              <span class="reg-sub-text">Log in here</span>
-            </a>
-          </div>
-
-          <div class="inputWrapper el">
-            <label>{{trans "FIRST_NAME"}}</label>
-            <input placeholder="{{trans " FIRST_NAME "}}" type="text" name="fn">
-          </div>
-          <div class="inputWrapper el">
-            <label>{{trans "LAST_NAME"}}</label>
-            <input placeholder="{{trans " LAST_NAME "}}" type="text" name="sn">
-          </div>
-
-          <div class="inputWrapper el">
+          <div class="inputWrapper el loginOnly">
             <label>{{trans "PASSWORD"}}</label>
             <input placeholder="{{trans " PASSWORD "}}" type="password" name="password">
           </div>
 
-          <div class="inputWrapper el">
-            <label>{{trans "REPEAT_PASS"}}</label>
-            <input placeholder="{{trans " REPEAT_PASS "}}" type="password" name="password2">
-          </div>
-          
-          <div class="info">
-            <svg class="info-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.2 14.2"><path d="M13.2 3.5c.6 1.1 1 2.3 1 3.6 0 1.3-.3 2.5-1 3.6-.6 1.1-1.5 1.9-2.6 2.6-1.1.6-2.3 1-3.6 1-1.3 0-2.5-.3-3.6-1-1.1-.6-1.9-1.5-2.6-2.6C.3 9.6 0 8.4 0 7.1c0-1.3.3-2.5 1-3.6.6-1.1 1.4-1.9 2.5-2.5C4.6.4 5.8 0 7.1 0c1.3 0 2.5.3 3.6 1 1 .6 1.9 1.4 2.5 2.5zm-3.7 8V10c0-.1 0-.2-.1-.2H8.3V5c0-.1 0-.2-.1-.2s-.1-.1-.2-.1H5c-.1 0-.2 0-.2.1s-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1h.9v3H5c-.1 0-.2 0-.2.1 0 0-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1h4.1c.1 0 .2 0 .2-.1.1-.1.2-.2.2-.3zM8.3 3.3V1.8c0-.1 0-.2-.1-.2-.1-.1-.1-.1-.2-.1H6.2c-.1 0-.2 0-.2.1-.1 0-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1H8c.1 0 .2 0 .2-.1.1-.1.1-.2.1-.2z"/></svg>
-            Password requires at least 8 characters with at least 1 uppercase, 1 lowercase and 1 digit character.
+          <div class="alt-options">
+            
+            <div class="register">
+              <a href="/register" id="id_a">
+                <span class="reg-text">Need an account?</span>
+                <span class="reg-sub-text">No problem, you can register here</span>
+              </a>
+            </div>
+            
+            <div class="reset loginOnly">
+              <a onclick="showReset()">
+                <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg" style="fill: #615B5B"><path d="M576 896q-159 0-271.5-112.5t-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5-112.5 271.5-271.5 112.5zm1077 320l249 249q9 9 9 23 0 13-9 22l-136 136q-9 9-22 9-14 0-23-9l-249-249-249 249q-9 9-23 9-13 0-22-9l-136-136q-9-9-9-22 0-14 9-23l249-249-249-249q-9-9-9-23 0-13 9-22l136-136q9-9 22-9 14 0 23 9l249 249 249-249q9-9 23-9 13 0 22 9l136 136q9 9 9 22 0 14-9 23zm-498 0l-181 181q-37 37-37 91 0 53 37 90l83 83q-21 3-44 3h-874q-121 0-194-69t-73-190q0-53 3.5-103.5t14-109 26.5-108.5 43-97.5 62-81 85.5-53.5 111.5-20q19 0 39 17 154 122 319 122t319-122q20-17 39-17 28 0 57 6-28 27-41 50t-13 56q0 54 37 91z"/></svg>
+                <span class="reg-text">Forgot password?</span>
+                <span class="reg-sub-text">We'll send you a reset link</span>
+              </a>
+            </div>
           </div>
 
-          <div id="recieveMail">
-            <input class="toggle" id="subscribe" type="checkbox" id="control1" name="sem">
-            <label for="subscribe"><span>Sign up to Make it Social newsletter</span></label>
-          </div>
-  
-          <div class="sub-wrapper">
+          <div class="sub-wrapper loginOnly">
             <button type="submit" class="sub">
               <svg width="15" height="15" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1683 808l-742 741q-19 19-45 19t-45-19l-742-741q-19-19-19-45.5t19-45.5l166-165q19-19 45-19t45 19l531 531 531-531q19-19 45-19t45 19l166 165q19 19 19 45.5t-19 45.5z" fill="#fff"/></svg>
-              {{trans "REGISTER"}}
+              {{trans "LOGIN"}}
             </button>
           </div>
-
         </form>
+        
+        <div class="sub-wrapper resetOnly">
+          <div id="reset-submit" class="reset-form-submit resetOnly">
+            <form action="/reset_request" target="_blank" method="post" class="toLeftS" onsubmit="return on_reset()">
+              <input type="hidden" name="csrf" value="{{.Csrf}}">
+              <input id="id_redirect2" type="hidden" name="redirect_to" value="{{.Redirect_to}}">
+              <input type="hidden" name="email" id="id_reset_email">
+              <input type="hidden" name="app_id" value="{{.App_id}}">
+              <input type="hidden" name="theme" value="{{.Theme}}">
+              <input type="hidden" name="lang" value="{{.Lang}}">
+              <input type="submit" class="reset-form-sub" value="{{trans " RESET_PASS "}}">
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   </div>
-
+  
+  <script>
+    function showReset() {
+      var loginElements = document.querySelectorAll(('.loginOnly'));
+      var resetElem = document.getElementById('reset-submit');
+      
+      for (var index = 0; index < loginElements.length; index++) {
+        var element = loginElements[index];
+        element.style.display = 'none';  
+      }
+      resetElem.style.display = 'block';
+      
+    }
+  </script>
 
   <script>
     (function(){
         var a = document.getElementById('id_a'),
             href = a.getAttribute('href');
         if (window === top.window){
-           // a.parentNode.style.display = 'inline-block';
+            a.parentNode.style.display = 'block';
         }
         if (href.indexOf('?')<0){
-            var r = location.search.replace('login=0','login=1');
+            var r = location.search.replace('login=1','login=0');
 			if (r.indexOf('error=')>=0){
-				var n = r.indexOf('error='), n2 = r.indexOf('&', n);
+				var n = r.indexOf('error='), n2 = r.indexOf('&',n);
 				r = r.substring(0,n)+r.substr(n2+1);
 			}
-            a.setAttribute('href', href + r);
+			a.setAttribute('href', href + r);
         }
-        var inps = document.querySelectorAll('input');
-        for (var i=0; i<inps.length; i++){
-            var inp = inps[i];
-            inp.addEventListener('mousedown', function(e){
-                var p = e.target;
-                if (p && p.className) p.className = p.className.replace('redbox','');
-            });
-        }
-        document.querySelector('form').addEventListener('submit', onsubmit);
     })();
-    function validpass(p){
-        return p.length > 7 && /[A-Z]+/.test(p) && /[a-z]+/.test(p) && /[0-9]+/.test(p);
-    }
-    function reden(e){
-        if (e) e.className = (e.className || '') + ' redbox'; 
-    }
-	function onsubmit(e){
-		var frm = e.target,
-            em = frm.username.value,
-            isem = /^[^@]+@[^@]+$/.test(em),
-            fn = frm.fn.value,
-			pw = frm.password.value,
-            vpw = validpass(pw),
-			pw2 = frm.password2.value,
-            spw = pw2 == pw ? true : false;
-        if (!isem) reden(frm.username);
-        if (!fn) reden(frm.fn);
-        if (!vpw) reden(frm.password);
-        if (!spw) reden(frm.password2);
-		if (!(isem && vpw && spw)) e.preventDefault();
+    
+	function onlogin(){
+		var d = document, q = 'querySelector', 
+			p = function(n){ return 'input[name="'+n+'"]' },
+			em = d[q](p('username')).value,
+			pw = d[q](p('password')).value;
+		return /^[^@]+@[^@]+$/.test(em) && pw.length >= 6;
 	}
+    
+	function email_change(){
+		var f = document.getElementById('id_email'), t = document.getElementById('id_reset_email');
+		t.value = f.value;
+	}
+    
+	function on_reset(){
+		var email = document.getElementById('id_reset_email').value;
+		if (/^[^@]+@[^@]+$/.test(email)){
+			var rd = document.getElementById('id_redirect2');
+			rd.value = rd.value + '?email=' + email;
+			return true;
+		}
+		return false;
+	}
+
   </script>
 
 </body>
