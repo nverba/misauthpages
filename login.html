@@ -200,13 +200,18 @@
       position: relative;
       color: #615B5B;
     }
-    
+
+    a, a:visited {
+      color: #615B5B;
+    }
+
     .reset {
       order: 5;
       height: 60px;
       width: 180px;
       position: absolute;
       right: 0;
+      cursor: pointer;
     }
     
     .reset svg {
@@ -231,6 +236,10 @@
       display: block;
       width: 200px;
       height: 60px;
+    }
+    
+    svg {
+      pointer-events: none;
     }
     
     #reset-submit {
