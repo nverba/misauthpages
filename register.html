@@ -103,8 +103,30 @@
       margin-top: 30px;
     }
     
+    .num {
+      height: 60px;
+      width: 60px;
+      border-radius: 30px;
+      text-align: center;
+      line-height: 60px;
+      background-color: #87c7c7;
+      color: #fff;
+      position: absolute;
+    }
+    
+    .prompt-text {
+      margin-left: 70px;
+    }
+    
     .num, .sub {
       font-family: Oswald, sans-serif;
+    }
+    
+    .form-prompt {
+      width: 249px;
+      height: 60px;
+      line-height: 60px;
+      margin: 0 auto;
     }
     
     .sub {
@@ -153,6 +175,10 @@
       line-height: 60px;
       position: relative;
     }
+    
+    .info-svg {
+      height: 12px;
+    }
 
     
     @media (max-width: 910px) {
@@ -172,6 +198,12 @@
 <body>
   <div class="entire">
     <section class="loginreg">
+      
+      <div class="form-prompt">
+        <div class="num">3</div>
+        <div class="prompt-text">Create an account</div>
+      </div>
+      
       <div class="fields">
         {{if .Error}}
         <p class="error" style="color:red">{{.Error}}</p>
@@ -213,7 +245,8 @@
           </div>
           
           <div class="info">
-            Please ensure that your password is at least 8 characters long and includes at least 1 uppercase, 1 lowercase and 1 digit character.
+                <svg class="info-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.2 14.2"><path d="M13.2 3.5c.6 1.1 1 2.3 1 3.6 0 1.3-.3 2.5-1 3.6-.6 1.1-1.5 1.9-2.6 2.6-1.1.6-2.3 1-3.6 1-1.3 0-2.5-.3-3.6-1-1.1-.6-1.9-1.5-2.6-2.6C.3 9.6 0 8.4 0 7.1c0-1.3.3-2.5 1-3.6.6-1.1 1.4-1.9 2.5-2.5C4.6.4 5.8 0 7.1 0c1.3 0 2.5.3 3.6 1 1 .6 1.9 1.4 2.5 2.5zm-3.7 8V10c0-.1 0-.2-.1-.2H8.3V5c0-.1 0-.2-.1-.2s-.1-.1-.2-.1H5c-.1 0-.2 0-.2.1s-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1h.9v3H5c-.1 0-.2 0-.2.1 0 0-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1h4.1c.1 0 .2 0 .2-.1.1-.1.2-.2.2-.3zM8.3 3.3V1.8c0-.1 0-.2-.1-.2-.1-.1-.1-.1-.2-.1H6.2c-.1 0-.2 0-.2.1-.1 0-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1H8c.1 0 .2 0 .2-.1.1-.1.1-.2.1-.2z"/></svg>
+            Password requires at least 8 characters with at least 1 uppercase, 1 lowercase and 1 digit character.
           </div>
 
           <div id="recieveMail">
