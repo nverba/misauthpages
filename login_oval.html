@@ -268,9 +268,9 @@
   <div class="entire">
     <section class="loginreg">
 
-      <div class="form-prompt">
+      <!--<div class="form-prompt">
         <span class="prompt-text">Login</span>
-      </div>
+      </div>-->
 
       <div class="fields">
         {{if .Error}}
@@ -321,7 +321,7 @@
         
         <div class="sub-wrapper resetOnly">
           <div id="reset-submit" class="reset-form-submit resetOnly">
-            <form action="/reset_request" target="_blank" method="post" class="toLeftS" onsubmit="return on_reset()">
+            <form action="/reset_request" method="post" class="toLeftS" onsubmit="return on_reset()">
               <input type="hidden" name="csrf" value="{{.Csrf}}">
               <input id="id_redirect2" type="hidden" name="redirect_to" value="{{.Redirect_to}}">
               <input type="hidden" name="email" id="id_reset_email">

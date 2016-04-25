@@ -277,9 +277,9 @@
   <div class="entire">
     <section class="loginreg">
       
-      <div class="form-prompt">
+      <!--<div class="form-prompt">
         <span class="prompt-text">Create an account</span>
-      </div>
+      </div>-->
       
       <div class="fields">
         {{if .Error}}
@@ -310,11 +310,11 @@
 
           <div class="inputWrapper el">
             <label>{{trans "FIRST_NAME"}}</label>
-            <input placeholder='{{trans "FIRST_NAME"}}' type="text" name="fn">
+            <input placeholder='{{trans "FIRST_NAME"}}' type="text" name="first_name">
           </div>
           <div class="inputWrapper el">
             <label>{{trans "LAST_NAME"}}</label>
-            <input placeholder='{{trans "LAST_NAME"}}' type="text" name="sn">
+            <input placeholder='{{trans "LAST_NAME"}}' type="text" name="last_name">
           </div>
 
           <div class="inputWrapper el">
@@ -385,13 +385,13 @@
 		var frm = e.target,
             em = frm.username.value,
             isem = /^[^@]+@[^@]+$/.test(em),
-            fn = frm.fn.value,
+            fn = frm.first_name.value,
 			pw = frm.password.value,
             vpw = validpass(pw),
 			pw2 = frm.password2.value,
             spw = pw2 == pw ? true : false;
         if (!isem) reden(frm.username);
-        if (!fn) reden(frm.fn);
+        if (!fn) reden(frm.first_name);
         if (!vpw) reden(frm.password);
         if (!spw) reden(frm.password2);
 		if (!(isem && vpw && spw)) e.preventDefault();
