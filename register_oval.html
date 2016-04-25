@@ -22,7 +22,7 @@
     }
     
     .loginreg {
-      padding: 0 30px;
+      padding: 0 20px;
     }
     
     .error {
@@ -285,7 +285,7 @@
         {{if .Error}}
         <p class="error" style="color:red">{{.Error}}</p>
         {{end}}
-        <form action="/register" method="post" class="main-form">
+        <form action="/register" method="post" onsubmit="return onsubmit()" class="main-form">
         
           <input type="hidden" name="csrf" value="{{.Csrf}}">
           <input type="hidden" name="redirect_to" value="{{.Redirect_to}}">
