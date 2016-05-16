@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Make it Social | Login</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Login to manage your group at Make it Social the group booking platform.">
+  <meta name="author" content="Make it Social">
+  <link rel="icon" href="/favicon.ico">
+
+  <link href="login_oval_files/css_002.css" rel="stylesheet" type="text/css">
+  <link href="login_oval_files/css.css" rel="stylesheet" type="text/css">
+  
+  <style>
+    body {
+      font-family: 'Roboto', 'Noto', 'Open Sans', sans-serif;
+      font-size: 16px;
+      padding: 0;
+      margin: 0;
+    }
+    
+    /*.loginreg {
+      padding: 40px 20px;
+    }*/
+    
+    .error {
+      width: 100%;
+      border: 2px dotted red;
+      height: 54px;
+      max-width: 945px;
+      line-height: 54px;
+      margin: 0 auto 30px;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+    
+    .main-form {
+      width: 100%;
+      max-width: 980px;
+      height: 100%;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+    }
+    
+    .form-group .form-input:not(:first-child) {
+      margin-left: 26px;
+    }
+    
+    .form-input {
+      background-color: #87c7c7;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      height: 54px;
+      line-height: 54px;
+      padding: 0px 15px;
+      margin-top: 28px;
+      position: relative;
+      box-sizing: border-box;
+    }
+    
+    .form-input.login {
+      background-color: #fff;
+      border: 2px solid #A9A9A9;
+    }
+    
+    .form-input label {
+      position: absolute;
+      top: -18px;
+      font-size: 12px;
+      height: 12px;
+      line-height: 12px;
+      color: #222;
+    }
+    
+    .form-input input {
+      width: 100%;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      height: 30px;
+      margin-top: 8px;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #fff;
+      -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
+      border-radius: 0;
+      color: #fff;
+      font-size: 16px;
+    }
+    
+    input,
+    select,
+    textarea {
+      color: #fff;
+      font-size: 16px;
+      -webkit-appearance: none;
+         -moz-appearance: none;
+              appearance: none;
+      border-radius: 0;
+      font-family: inherit;
+    }
+    
+    input:focus {
+      outline: none;
+      color: #130a02;
+      border-bottom: 2px solid rgba(84,46,7,0.75);
+    }
+    
+    input[type="password"] {
+      letter-spacing: 2.5px;
+    }
+    
+    ::-webkit-input-placeholder {
+      color: #fff;
+      letter-spacing: 0;
+    }
+    
+    :-moz-placeholder {
+      /* Firefox 18- */
+      color: #fff;
+      letter-spacing: 0;
+    }
+    
+    ::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #fff;
+      letter-spacing: 0;
+    }
+    
+    :-ms-input-placeholder {
+      color: #fff;
+      letter-spacing: 0;
+    }
+    
+    
+    .prompt-text {
+      position: relative;
+    }
+    
+    .prompt-text:after {
+      content: '3';
+      height: 54px;
+      width: 54px;
+      border-radius: 30px;
+      text-align: center;
+      line-height: 54px;
+      background-color: #87c7c7;
+      color: #fff;
+      position: absolute;
+      left: -70px;
+    }
+    
+    .form-prompt {
+      width: 100%;
+      height: 54px;
+      max-width: 945px;
+      line-height: 54px;
+      margin: 30px auto;
+      text-align: center;
+    }
+    
+    .sub-wrapper {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 34px;
+    }
+    
+    .sub,
+    .reset-form-sub {
+      font-family: Oswald, sans-serif;
+      text-transform: uppercase;
+      height: 60px;
+      width: 260px;
+      color: #fff;
+      background-color: #542e07;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    
+    .sub svg {
+      height: 24px;
+      width: 24px;
+      -webkit-transform: translateY(4px);
+          -ms-transform: translateY(4px);
+              transform: translateY(4px);
+    }
+    
+    .info {
+      padding-left: 16px;
+      padding-right: 12px;
+      margin-top: 4px;
+      text-align: left;
+      font-size: 12px;
+    }
+    
+    .info-svg {
+      height: 12px;
+      width: 12px;
+      padding-right: 2px;
+      -webkit-transform: translateY(1px);
+          -ms-transform: translateY(1px);
+              transform: translateY(1px);
+    }
+    
+    #receiveMail {
+      max-width: 635px;
+      padding: 8px 12px;
+      margin: 0 auto;
+      margin-top: 22px;
+      text-align: left;
+      position: relative;
+    }
+    
+    #receiveMail {
+      position: relative;
+      padding-left: 38px;
+    }
+    
+    #subscribe {
+      position: absolute;
+      top: 8px;
+      left: 11px;
+    }
+    
+    #receiveMail label {
+      cursor: pointer;
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 8px;
+      left: 12px;
+      background-color: #fff;
+      box-sizing: border-box;
+      border: 2px solid #333;
+      border-radius: 2px;
+    }
+    
+    #receiveMail label:after {
+      opacity: 0;
+      filter: alpha(opacity=0);
+      content: '';
+      position: absolute;
+      width: 9.25px;
+      height: 5px;
+      background: transparent;
+      top: 1px;
+      left: 2px;
+      border: 2px solid #fff;
+      border-top: none;
+      border-right: none;
+      -webkit-transform: rotate(-45deg);
+          -ms-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+    }
+    
+    #receiveMail input[type=checkbox]:checked + label {
+      background-color: #87c7c7;
+      border-color: #87c7c7;
+    }
+    
+    #receiveMail input[type=checkbox]:checked + label:after {
+      opacity: 1;
+      filter: alpha(opacity=100);
+    }
+    
+    .alt-options {
+      padding: 8px;
+      width: 100%;
+      height: 54px;
+      line-height: 54px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      position: relative;
+      color: #888;
+    }
+
+    a, a:visited {
+      color: #888;
+    }
+
+    .reset a {
+      height: 54px;
+      width: 180px;
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+    }
+    
+    .reset svg {
+      margin: 0 14px;
+      overflow: visible;
+      -webkit-transform: translateY(8px);
+          -ms-transform: translateY(8px);
+              transform: translateY(8px);
+    }
+    
+    .register {
+      position: absolute;
+      display: block;
+      width: 160px;
+      height: 54px;
+      padding-left: 2px;
+    }
+    
+    .login {
+      overflow: hidden;
+    }
+    
+    .login svg {
+      padding-top: 16px;
+      padding-right: 12px;
+    }
+    
+    .reg-text {
+      font-size: 14px;
+      position: absolute;
+      top: -8px;
+    }
+    
+    .reg-sub-text {
+      font-size: 10px;
+      position: absolute;
+      bottom: -12px;
+    }
+    
+    svg {
+      pointer-events: none;
+    }
+    
+    #reset-submit {
+      display: none;
+    }
+    
+    .login {
+      box-sizing: border-box !important;
+      -webkit-box-ordinal-group: 3;
+      -webkit-order: 2;
+          -ms-flex-order: 2;
+              order: 2;
+      margin-left: 26px;
+    }
+    
+    .email {
+      -webkit-box-ordinal-group: 2;
+      -webkit-order: 1;
+          -ms-flex-order: 1;
+              order: 1;
+      margin-left: 0 !important;
+    }
+
+    @media all and (max-width: 618px) {
+      .form-group {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        display: block;
+      }
+
+      .form-input {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        width: 100%;
+        min-width: 100%;
+        display: block;
+      }
+
+      .form-group .form-input:not(:first-child) {
+        margin-left: 0;
+      }
+
+      .login {
+        margin-left: 0;
+      }
+    }
+    
+    @media all and (max-width: 430px) {
+      .reset a {
+        width: 176px;
+      }
+      
+      .reset.loginOnly a {
+        width: 136px;
+      }
+      
+      .reset svg {
+        display: none;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <div class="entire">
+    <section class="loginreg">
+
+      <!--<div class="form-prompt">
+        <span class="prompt-text">Login</span>
+      </div>-->
+
+      <div class="fields">
+        {{if .Error}}
+        <p class="error" style="color:red">{{.Error}}</p>
+        {{end}}
+        <form action="/login" method="post" onsubmit="return onlogin()" class="main-form">
+          <input name="csrf" value="{{.Csrf}}" type="hidden">
+          <input name="redirect_to" value="{{.Redirect_to}}" type="hidden">
+          <input name="app_id" value="{{.App_id}}" type="hidden">
+          <input name="theme" value="{{.Theme}}" type="hidden">
+          <input name="lang" value="{{.Lang}}" type="hidden">
+
+          <div class="form-group">
+            <div class="form-input">
+              <label>{{trans "EMAIL"}}</label>
+              <input placeholder="{{trans "EMAIL"}}" name="username" id="id_email" onchange="email_change()" type="email">
+            </div>
+
+            <div class="form-input loginOnly">
+              <label>{{trans "PASSWORD"}}</label>
+              <input placeholder="{{trans "PASSWORD"}}" name="password" type="password">
+            </div>
+          </div>
+
+          <div class="alt-options">
+            
+            <div style="display: block;" class="register">
+              <a href="/register" id="id_a">
+                <span class="reg-text">Need an account?</span>
+                <span class="reg-sub-text">No problem, you can register here</span>
+              </a>
+            </div>
+            
+            <div class="reset loginOnly">
+              <a onclick="showReset()">
+                <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg" style="fill: #a9a9a9"><path d="M576 896q-159 0-271.5-112.5t-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5-112.5 271.5-271.5 112.5zm1077 320l249 249q9 9 9 23 0 13-9 22l-136 136q-9 9-22 9-14 0-23-9l-249-249-249 249q-9 9-23 9-13 0-22-9l-136-136q-9-9-9-22 0-14 9-23l249-249-249-249q-9-9-9-23 0-13 9-22l136-136q9-9 22-9 14 0 23 9l249 249 249-249q9-9 23-9 13 0 22 9l136 136q9 9 9 22 0 14-9 23zm-498 0l-181 181q-37 37-37 91 0 53 37 90l83 83q-21 3-44 3h-874q-121 0-194-69t-73-190q0-53 3.5-103.5t14-109 26.5-108.5 43-97.5 62-81 85.5-53.5 111.5-20q19 0 39 17 154 122 319 122t319-122q20-17 39-17 28 0 57 6-28 27-41 50t-13 56q0 54 37 91z"></path></svg>
+                <span class="reg-text">Forgot password?</span>
+                <span class="reg-sub-text">We'll send you a reset link</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sub-wrapper loginOnly">
+            <button type="submit" class="sub">
+              {{trans "LOGIN"}}
+              <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z" fill="#fff"></path></svg>
+            </button>
+          </div>
+        </form>
+        
+        <div class="sub-wrapper resetOnly">
+          <div id="reset-submit" class="reset-form-submit resetOnly">
+            <form action="/reset_request" method="post" class="toLeftS" onsubmit="return on_reset()">
+              <input name="csrf" value="{{.Csrf}}" type="hidden">
+              <input id="id_redirect2" name="redirect_to" value="https://connect.makeitsocial.com/reset_pass" type="hidden">
+              <input name="email" id="id_reset_email" type="hidden">
+              <input name="app_id" value="{{.App_id}}" type="hidden">
+              <input name="theme" value="oval" type="hidden">
+              <input name="lang" value="{{.Lang}}" type="hidden">
+              <input class="reset-form-sub" value="{{trans "RESET_PASS"}}" type="submit">
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <script>
+    function showReset() {
+      var loginElements = document.querySelectorAll(('.loginOnly'));
+      var resetElem = document.getElementById('reset-submit');
+      
+      for (var index = 0; index < loginElements.length; index++) {
+        var element = loginElements[index];
+        element.style.display = 'none';  
+      }
+      resetElem.style.display = 'block';
+      
+    }
+  </script>
+
+  <script>
+    (function(){
+        var a = document.getElementById('id_a'),
+            href = a.getAttribute('href');
+        if (window === top.window){
+            a.parentNode.style.display = 'block';
+        }
+        if (href.indexOf('?')<0){
+            var r = location.search.replace('login=1','login=0');
+			if (r.indexOf('error=')>=0){
+				var n = r.indexOf('error='), n2 = r.indexOf('&',n);
+				r = r.substring(0,n)+r.substr(n2+1);
+			}
+			a.setAttribute('href', href + r);
+			copyhiddenparams();
+        }
+    })();
+    
+	function onlogin(){
+		var d = document, q = 'querySelector', 
+			p = function(n){ return 'input[name="'+n+'"]' },
+			em = d[q](p('username')).value,
+			pw = d[q](p('password')).value;
+		return /^[^@]+@[^@]+$/.test(em) && pw.length >= 6;
+	}
+    
+	function email_change(){
+		var f = document.getElementById('id_email'), t = document.getElementById('id_reset_email');
+		t.value = f.value;
+	}
+    
+	function on_reset(){
+		var email = document.getElementById('id_reset_email').value;
+		if (/^[^@]+@[^@]+$/.test(email)){
+			var rd = document.getElementById('id_redirect2');
+			rd.value = rd.value + '?email=' + email;
+			return true;
+		}
+		return false;
+	}
+function copyhiddenparams(){
+  var ps=document.location.href;
+  if (ps.indexOf('app_id')>0 || ps.indexOf('theme')>0) return;
+  var es=document.querySelectorAll('input[type="hidden"]'),i,e,n,v,buf=[],ks={csrf:1};
+  for (i=0;i<es.length;i++){
+    e=es[i];
+    if (e.getAttribute){
+      n=e.getAttribute('name');
+      v=e.getAttribute('value');
+      if (n && v && !ks[n]) {
+        buf.push(n+'='+encodeURIComponent(v));
+        ks[n] = 1;
+      }
+    }
+  }
+  var s = buf.join('&'),r=document.querySelector('#id_a');
+  if (r) {
+    r.setAttribute('href', r.getAttribute('href') + '?' + s);
+  }
+}
+  </script>
+
+
+
+</body></html>
