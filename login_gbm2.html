@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Make it Social | Login</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Login to manage your group at Make it Social the group booking platform.">
+    <meta name="author" content="Make it Social">
+    <link rel="icon" href="/favicon.ico">
+
+	<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/normalize.min.css">
+	<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/main.css">
+
+</head>
+
+<body>
+<div class="entire">
+<img width="180" class="logo" src="https://d21uq1a8lrig03.cloudfront.net/misauth/mis-logo.png">
+<section class="loginreg">
+<div class="fields">
+{{if .Error}}
+	<p style="color:red">{{.Error}}</p>
+{{end}}
+<form action="/login" method="post" onsubmit="return onlogin()">
+	<input type="hidden" name="csrf" value="{{.Csrf}}">
+	<input type="hidden" name="redirect_to" value="{{.Redirect_to}}">
+	<input type="hidden" name="app_id" value="{{.App_id}}">
+	<input type="hidden" name="theme" value="{{.Theme}}">
+	<input type="hidden" name="lang" value="{{.Lang}}">
+		<div class="inputWrapper">
+		    <label>{{trans "EMAIL"}}</label>
+		    <input placeholder="{{trans "EMAIL"}}" type="email" name="username" id="id_email" onchange="email_change()">
+		</div>
+		<div class="inputWrapper">
+		    <label>{{trans "PASSWORD"}}</label>
+		    <input placeholder="{{trans "PASSWORD"}}" type="password" name="password" >
+		</div>
+		<div style="clear:both"></div>
+		<br>
+		<div class="loginButton center">
+		    <button type="submit" class="orange">{{trans "LOGIN"}}</button>
+		</div>
+</form>
+		<br>
+		<div class="fieldsLinks clearfix">
+			<form action="/reset_request" method="post" class="toLeftS" onsubmit="return on_reset()">
+				<input type="hidden" name="csrf" value="{{.Csrf}}">
+				<input id="id_redirect2" type="hidden" name="redirect_to" value="{{.Redirect_to}}">
+				<input type="hidden" name="email" id="id_reset_email">
+                <input type="hidden" name="app_id" value="{{.App_id}}">
+                <input type="hidden" name="theme" value="{{.Theme}}">
+                <input type="hidden" name="lang" value="{{.Lang}}">
+		    	<input type="submit" value="{{trans "RESET_PASS"}}">
+			</form>
+			<a href="/register" id="id_a">{{trans "REGISTER_HERE"}}</a>
+		</div>
+</div>
+</section>
+</div>
+
+<footer>
+  <a href="http://makeitsocial.com/business/" target="_blank">Business info</a>
+  <a href="http://makeitsocial.com/terms.html" target="_blank">Terms & Conditions</a>
+</footer>
+
+<script>
+    (function(){
+        var a = document.getElementById('id_a'),
+            href = a.getAttribute('href');
+        if (window === top.window){
+            a.parentNode.style.display = 'block';
+        }
+        if (href.indexOf('?')<0){
+            var r = location.search.replace('login=1','login=0');
+			if (r.indexOf('error=')>=0){
+				var n = r.indexOf('error='), n2 = r.indexOf('&',n);
+				r = r.substring(0,n)+r.substr(n2+1);
+			}
+			a.setAttribute('href', href + r);
+            copyhiddenparams();
+        }
+    })();
+    
+	function onlogin(){
+		var d = document, q = 'querySelector', 
+			p = function(n){ return 'input[name="'+n+'"]' },
+			em = d[q](p('username')).value,
+			pw = d[q](p('password')).value;
+		return /^[^@]+@[^@]+$/.test(em) && pw.length >= 6;
+	}
+    
+	function email_change(){
+		var f = document.getElementById('id_email'), t = document.getElementById('id_reset_email');
+		t.value = f.value;
+	}
+    
+	function on_reset(){
+		var email = document.getElementById('id_reset_email').value;
+		if (/^[^@]+@[^@]+$/.test(email)){
+			var rd = document.getElementById('id_redirect2');
+            if (rd.value.indexOf('?email=')<0)
+    			rd.value = rd.value + '?email=' + email;
+			return true;
+		}
+		return false;
+	}
+function copyhiddenparams(){
+  var ps=document.location.href;
+  if (ps.indexOf('app_id')>0 || ps.indexOf('theme')>0) return;
+  var es=document.querySelectorAll('input[type="hidden"]'),i,e,n,v,buf=[],ks={csrf:1};
+  for (i=0;i<es.length;i++){
+    e=es[i];
+    if (e.getAttribute){
+      n=e.getAttribute('name');
+      v=e.getAttribute('value');
+      if (n && v && !ks[n]) {
+        buf.push(n+'='+encodeURIComponent(v));
+        ks[n] = 1;
+      }
+    }
+  }
+  var s = buf.join('&'),r=document.querySelector('#id_a');
+  if (r) {
+    r.setAttribute('href', r.getAttribute('href') + '?' + s);
+  }
+}
+</script>
+
+</body>
+
+</html>
