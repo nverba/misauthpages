@@ -20,7 +20,9 @@
       margin: 0;
     }
     
-
+    /*.loginreg {
+      padding: 40px 20px;
+    }*/
     
     .error {
       width: 100%;
@@ -471,7 +473,6 @@
         <div class="sub-wrapper resetOnly">
           <div id="reset-submit" class="reset-form-submit resetOnly">
             <form action="/reset_request" method="post" class="toLeftS" onsubmit="return on_reset()">
-<<<<<<< HEAD
               <input name="csrf" value="{{.Csrf}}" type="hidden">
               <input id="id_redirect2" name="redirect_to" value="https://components.makeitsocial.com/oval/?reset=1" type="hidden">
               <input name="email" id="id_reset_email" type="hidden">
@@ -479,15 +480,6 @@
               <input name="theme" value="oval" type="hidden">
               <input name="lang" value="{{.Lang}}" type="hidden">
               <input class="reset-form-sub" value="{{trans "RESET_PASS"}}" type="submit">
-=======
-              <input type="hidden" name="csrf" value="{{.Csrf}}">
-              <input id="id_redirect2" type="hidden" name="redirect_to" value="{{.Redirect_to}}">
-              <input type="hidden" name="email" id="id_reset_email">
-              <input type="hidden" name="app_id" value="{{.App_id}}">
-              <input type="hidden" name="theme" value="{{.Theme}}">
-              <input type="hidden" name="lang" value="{{.Lang}}">
-              <input type="submit" class="reset-form-sub" value='{{trans "RESET_PASS"}}'>
->>>>>>> 8d8158dc6f943234215c7cf8876ddd3005fa212d
             </form>
           </div>
         </div>
