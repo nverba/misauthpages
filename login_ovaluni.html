@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Make it Social</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Login to manage your group at Make it Social the group booking platform.">
+  <meta name="author" content="Make it Social">
+  <link rel="icon" href="/favicon.ico">
+
+</head>
+
+<body>
+
+  <section class="loginreg">
+    
+    {{if .Error}}
+    <p class="error" style="color:red">{{.Error}}</p>
+    {{end}}
+
+    <div class="fields">
+
+      <form action="/login" method="post" onsubmit="return onlogin()" class="main-form">
+        <input name="csrf" value="{{.Csrf}}" type="hidden">
+        <input name="redirect_to" value="https://kiaoval.makeitsocial.com/assets/auto-auth.html" type="hidden">
+        <input name="app_id" value="{{.App_id}}" type="hidden">
+        <input name="theme" value="{{.Theme}}" type="hidden">
+        <input name="lang" value="{{.Lang}}" type="hidden">
+
+        <div class="form-group">
+          <div class="form-input">
+            <label>{{trans "EMAIL"}}</label>
+            <input placeholder="{{trans "EMAIL"}}" name="username" id="id_email" onchange="email_change()" type="email">
+          </div>
+
+          <div class="form-input loginOnly">
+            <label>{{trans "PASSWORD"}}</label>
+            <input placeholder="{{trans "PASSWORD"}}" name="password" type="password">
+          </div>
+        </div>
+        <div class="sub-wrapper loginOnly">
+          <button type="submit" class="sub"></button>
+        </div>
+      </form>
+      
+      <div class="reset">
+        <form action="/reset_request" method="post" class="toLeftS" onsubmit="return on_reset()">
+          <input name="csrf" value="{{.Csrf}}" type="hidden">
+          <input id="id_redirect2" name="redirect_to" value="https://components.makeitsocial.com/oval/?reset=1" type="hidden">
+          <input name="email" id="id_reset_email" type="hidden">
+          <input name="app_id" value="{{.App_id}}" type="hidden">
+          <input name="theme" value="oval" type="hidden">
+          <input name="lang" value="{{.Lang}}" type="hidden">
+          <input class="reset-form-sub" value="Reset password" type="submit">
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    function getQueryString( field, url ) {
+      var href = url ? url : window.location.href;
+      var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+      var string = reg.exec(href);
+      return string ? string[1] : null;
+    };
+  </script>
+</body></html>
