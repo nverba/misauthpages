@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Make it Social | Login</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Login to manage your group at Make it Social the group booking platform.">
+    <meta name="author" content="Make it Social">
+    <link rel="icon" href="/favicon.ico">
+
+		<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/normalize.min.css">
+		<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/main.css">
+
+</head>
+
+<body>
+<div class="entire">
+<img width="180" class="logo" src="https://d21uq1a8lrig03.cloudfront.net/misauth/mis-logo.png">
+<section class="loginreg">
+<div class="fields">
+
+<form action="/login" method="post">
+	<input type="hidden" name="csrf" value="{{.Csrf}}">
+	<input type="hidden" name="redirect_to" value="{{.Redirect_to}}">
+	<input type="hidden" name="app_id" value="{{.App_id}}">
+	<input type="hidden" name="theme" value="{{.Theme}}">
+	<input type="hidden" name="lang" value="{{.Lang}}">
+	<h2>{{trans "RESET_PASS"}}</h2>
+	<p>We've just sent you a password reset code to {{{remail}}} Please copy this code to the field below.</p>
+	<div class="inputWrapper">
+		<label>Reset code</label>
+		<input placeholder="Password reset code">
+	</div>
+	<div class="divider clearfix"></div>
+	<div class="inputWrapper">
+		<label>New password</label>
+		<input type="password" placeholder="New password">
+	</div>
+	<div class="inputWrapper">
+		<label>{{trans "REPEAT_PASS"}}</label>
+		<input type="password" placeholder="Repeat new password">
+	</div>
+	<div style="clear:both"></div>
+	<br>
+	<div class="center margin">
+		<button class="orange">{{trans "RESET_PASS"}}</button>
+	</div>
+	<br>
+</form>
+</div>
+</section>
+</div>
+
+<footer>
+  <a href="http://makeitsocial.com/business/" target="_blank">Business info</a>
+  <a href="http://makeitsocial.com/terms.html" target="_blank">Terms & Conditions</a>
+</footer>
+
+</body>
+
+</html>
