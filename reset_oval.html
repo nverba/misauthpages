@@ -415,7 +415,7 @@
 
         <form action="/login" method="post" id="resetCode">
           <input type="hidden" name="csrf" value="{{.Csrf}}">
-          <input type="hidden" id="redirect" name="redirect_to" value="{{.Redirect_to}}">
+          <input type="hidden" name="redirect_to" value="{{.Redirect_to}}">
           <input type="hidden" name="app_id" value="{{.App_id}}">
           <input type="hidden" name="theme" value="{{.Theme}}">
           <input type="hidden" name="lang" value="{{.Lang}}">
@@ -449,28 +449,6 @@
     </section>
     
   </div>
-  
-  <script>
-    
-    function getQueryString( field, url ) {
-      var href = url ? url : window.location.href;
-      var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-      var string = reg.exec(href);
-      return string ? string[1] : null;
-    };
-    
-    var login = getQueryString('autoauth');
-    console.log('Login redirect', autoauth)
-    
-    
-    if (autoauth) {
-      var redirect = decodeURIComponent(autoauth);
-      var reInput = document.getElementById('redirect');
-      console.log('Updating redirect value', redirect);
-      reInput.value = redirect;
-    }
-    
-  </script>
 </body>
 
 </html>

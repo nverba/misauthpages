@@ -1,18 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Make it Social | Login</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Login to manage your group at Make it Social the group booking platform.">
-    <meta name="author" content="Make it Social">
-    <link rel="icon" href="/favicon.ico">
 
-		<!--<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/normalize.min.css">
+<head>
+  <title>Make it Social | Login</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE-edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Login to manage your group at Make it Social the group booking platform.">
+  <meta name="author" content="Make it Social">
+  <link rel="icon" href="/favicon.ico">
+
+  <!--<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/normalize.min.css">
 		<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/main.css">-->
-    
+
   <style>
     body {
       font-family: 'Roboto', 'Noto', 'Open Sans', sans-serif;
@@ -20,7 +20,6 @@
       padding: 0;
       margin: 0;
     }
-    
     /*.loginreg {
       padding: 40px 20px;
     }*/
@@ -50,8 +49,8 @@
       display: flex;
       -webkit-box-pack: justify;
       -webkit-justify-content: space-between;
-          -ms-flex-pack: justify;
-              justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
     }
     
     .form-group .form-input:not(:first-child) {
@@ -62,8 +61,8 @@
       background-color: #87c7c7;
       -webkit-box-flex: 1;
       -webkit-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
+      -ms-flex: 1;
+      flex: 1;
       height: 54px;
       line-height: 54px;
       padding: 0px 15px;
@@ -90,16 +89,16 @@
       width: 100%;
       -webkit-box-align: center;
       -webkit-align-items: center;
-          -ms-flex-align: center;
-              align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
       height: 30px;
       margin-top: 8px;
       background-color: transparent;
       border: none;
       border-bottom: 1px solid #fff;
       -webkit-appearance: none;
-         -moz-appearance: none;
-              appearance: none;
+      -moz-appearance: none;
+      appearance: none;
       border-radius: 0;
       font-size: 16px;
     }
@@ -109,8 +108,8 @@
     textarea {
       font-size: 16px;
       -webkit-appearance: none;
-         -moz-appearance: none;
-              appearance: none;
+      -moz-appearance: none;
+      appearance: none;
       border-radius: 0;
       font-family: inherit;
     }
@@ -118,7 +117,7 @@
     input:focus {
       outline: none;
       color: #130a02;
-      border-bottom: 2px solid rgba(84,46,7,0.75);
+      border-bottom: 2px solid rgba(84, 46, 7, 0.75);
     }
     
     input[type="password"] {
@@ -146,7 +145,6 @@
       color: #fff;
       letter-spacing: 0;
     }
-    
     
     .prompt-text {
       position: relative;
@@ -198,8 +196,8 @@
       height: 24px;
       width: 24px;
       -webkit-transform: translateY(4px);
-          -ms-transform: translateY(4px);
-              transform: translateY(4px);
+      -ms-transform: translateY(4px);
+      transform: translateY(4px);
     }
     
     .info {
@@ -215,8 +213,8 @@
       width: 12px;
       padding-right: 2px;
       -webkit-transform: translateY(1px);
-          -ms-transform: translateY(1px);
-              transform: translateY(1px);
+      -ms-transform: translateY(1px);
+      transform: translateY(1px);
     }
     
     #receiveMail {
@@ -266,8 +264,8 @@
       border-top: none;
       border-right: none;
       -webkit-transform: rotate(-45deg);
-          -ms-transform: rotate(-45deg);
-              transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
     }
     
     #receiveMail input[type=checkbox]:checked + label {
@@ -290,11 +288,12 @@
       position: relative;
       color: #888;
     }
-
-    a, a:visited {
+    
+    a,
+    a:visited {
       color: #888;
     }
-
+    
     .reset a {
       height: 54px;
       width: 180px;
@@ -307,8 +306,8 @@
       margin: 0 14px;
       overflow: visible;
       -webkit-transform: translateY(8px);
-          -ms-transform: translateY(8px);
-              transform: translateY(8px);
+      -ms-transform: translateY(8px);
+      transform: translateY(8px);
     }
     
     .register {
@@ -352,43 +351,40 @@
       box-sizing: border-box !important;
       -webkit-box-ordinal-group: 3;
       -webkit-order: 2;
-          -ms-flex-order: 2;
-              order: 2;
+      -ms-flex-order: 2;
+      order: 2;
       margin-left: 26px;
     }
     
     .email {
       -webkit-box-ordinal-group: 2;
       -webkit-order: 1;
-          -ms-flex-order: 1;
-              order: 1;
+      -ms-flex-order: 1;
+      order: 1;
       margin-left: 0 !important;
     }
-
+    
     @media all and (max-width: 618px) {
       .form-group {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -webkit-flex-direction: column;
-            -ms-flex-direction: column;
-                flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
         display: block;
       }
-
       .form-input {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
-            -ms-flex: 1;
-                flex: 1;
+        -ms-flex: 1;
+        flex: 1;
         width: 100%;
         min-width: 100%;
         display: block;
       }
-
       .form-group .form-input:not(:first-child) {
         margin-left: 0;
       }
-
       .login {
         margin-left: 0;
       }
@@ -398,7 +394,6 @@
       .reset {
         width: 176px;
       }
-      
       .reset svg {
         display: none;
       }
@@ -413,64 +408,70 @@
     <section class="loginreg">
       <div class="fields">
 
-        <form action="/login" method="post" id="resetCode">
+        <form action="/reset_pass" method="post">
           <input type="hidden" name="csrf" value="{{.Csrf}}">
-          <input type="hidden" id="redirect" name="redirect_to" value="{{.Redirect_to}}">
+          <input type="hidden" name="redirect_to" value="{{.Redirect_to}}">
           <input type="hidden" name="app_id" value="{{.App_id}}">
           <input type="hidden" name="theme" value="{{.Theme}}">
           <input type="hidden" name="lang" value="{{.Lang}}">
+          <input type="hidden" name="extra" value="{{.Extra}}">
+          <input type="hidden" name="code" value="">
           <h2>{{trans "RESET_PASS"}}</h2>
-          <p>We've just sent you a password reset code to {{{remail}}} Please copy this code to the field below.</p>
-          
-          <div class="form-group">
-            <div class="form-input">
-              <label>Reset code</label>
-              <input placeholder="Password reset code">
-            </div>
-          </div>
-          
+
           <div class="form-group">
             <div class="form-input">
               <label>New password</label>
-              <input type="password" placeholder="New password">
+              <input name="password" type="password" placeholder="New password" id="password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})" required>
             </div>
             <div class="form-input">
-              <label>{{trans "REPEAT_PASS"}}</label>
-              <input type="password" placeholder="Repeat new password">
+              <label>Repeat password</label>
+              <input name="password2" type="password" placeholder="Repeat new password" id="password2" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})" required>
             </div>
           </div>
-          
+
           <div class="sub-wrapper">
             <button class="sub">{{trans "RESET_PASS"}}</button>
           </div>
         </form>
-        
+
       </div>
     </section>
-    
+
   </div>
   
   <script>
-    
-    function getQueryString( field, url ) {
-      var href = url ? url : window.location.href;
-      var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-      var string = reg.exec(href);
-      return string ? string[1] : null;
-    };
-    
-    var login = getQueryString('autoauth');
-    console.log('Login redirect', autoauth)
-    
-    
-    if (autoauth) {
-      var redirect = decodeURIComponent(autoauth);
-      var reInput = document.getElementById('redirect');
-      console.log('Updating redirect value', redirect);
-      reInput.value = redirect;
-    }
-    
-  </script>
-</body>
+    var password = document.getElementById("password")
+    var confirm_password = document.getElementById("password2");
 
+    function validatePassword(){
+      if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+  </script>
+  
+<script>
+  (function(){
+      var sch=document.location.search.substr(1),
+          ss=sch.split('&'),i,s,ks;
+      for (i=0;i<ss.length;i++){
+          s=ss[i];ks=s.split('=')
+          if (ks.length<2) continue;
+          e=document.querySelector('input[name="'+ks[0]+'"]');
+          if (e){
+              e.setAttribute('value',ks[1])
+          } else if (ks[0]=='app_url'){
+              document.querySelector('input[name="redirect_to"]').setAttribute('value',ks[1]);
+          }
+      }
+  })();
+
+</script>
+
+</body>
 </html>
