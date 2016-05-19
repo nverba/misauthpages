@@ -10,9 +10,6 @@
   <meta name="author" content="Make it Social">
   <link rel="icon" href="/favicon.ico">
 
-  <!--<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/normalize.min.css">
-		<link rel="stylesheet" href="https://d21uq1a8lrig03.cloudfront.net/misauth/main.css">-->
-
   <style>
     body {
       font-family: 'Roboto', 'Noto', 'Open Sans', sans-serif;
@@ -408,7 +405,7 @@
     <section class="loginreg">
       <div class="fields">
 
-        <form action="/reset_pass" method="post" novalidate>
+        <form action="/reset_pass" method="post" >
           <input type="hidden" name="csrf" value="{{.Csrf}}">
           <input type="hidden" id="redirect" name="redirect_to" value="{{.Redirect_to}}">
           <input type="hidden" name="app_id" value="{{.App_id}}">
@@ -421,11 +418,13 @@
           <div class="form-group">
             <div class="form-input">
               <label>New password</label>
-              <input name="password" type="password" placeholder="New password" id="password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})" required>
+              <input name="password" type="password" placeholder="New password" id="password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})"
+                required>
             </div>
             <div class="form-input">
               <label>Repeat password</label>
-              <input name="password2" type="password" placeholder="Repeat new password" id="password2" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})" required>
+              <input name="password2" type="password" placeholder="Repeat new password" id="password2" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})"
+                required>
             </div>
           </div>
 
@@ -438,30 +437,42 @@
     </section>
 
   </div>
-  
+
   <script>
-  
+    /*! modernizr 3.3.1 (Custom Build) | MIT *
+ * http://modernizr.com/download/?-formvalidation !*/
+!function(e,n,t){function o(e,n){return typeof e===n}function i(){var e,n,t,i,a,r,s;for(var l in d)if(d.hasOwnProperty(l)){if(e=[],n=d[l],n.name&&(e.push(n.name.toLowerCase()),n.options&&n.options.aliases&&n.options.aliases.length))for(t=0;t<n.options.aliases.length;t++)e.push(n.options.aliases[t].toLowerCase());for(i=o(n.fn,"function")?n.fn():n.fn,a=0;a<e.length;a++)r=e[a],s=r.split("."),1===s.length?Modernizr[s[0]]=i:(!Modernizr[s[0]]||Modernizr[s[0]]instanceof Boolean||(Modernizr[s[0]]=new Boolean(Modernizr[s[0]])),Modernizr[s[0]][s[1]]=i),f.push((i?"":"no-")+s.join("-"))}}function a(){return"function"!=typeof n.createElement?n.createElement(arguments[0]):u?n.createElementNS.call(n,"http://www.w3.org/2000/svg",arguments[0]):n.createElement.apply(n,arguments)}function r(){var e=n.body;return e||(e=a(u?"svg":"body"),e.fake=!0),e}function s(e,t,o,i){var s,d,l,f,u="modernizr",c=a("div"),m=r();if(parseInt(o,10))for(;o--;)l=a("div"),l.id=i?i[o]:u+(o+1),c.appendChild(l);return s=a("style"),s.type="text/css",s.id="s"+u,(m.fake?m:c).appendChild(s),m.appendChild(c),s.styleSheet?s.styleSheet.cssText=e:s.appendChild(n.createTextNode(e)),c.id=u,m.fake&&(m.style.background="",m.style.overflow="hidden",f=p.style.overflow,p.style.overflow="hidden",p.appendChild(m)),d=t(c,e),m.fake?(m.parentNode.removeChild(m),p.style.overflow=f,p.offsetHeight):c.parentNode.removeChild(c),!!d}var d=[],l={_version:"3.3.1",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,n){var t=this;setTimeout(function(){n(t[e])},0)},addTest:function(e,n,t){d.push({name:e,fn:n,options:t})},addAsyncTest:function(e){d.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=l,Modernizr=new Modernizr;var f=[],p=n.documentElement,u="svg"===p.nodeName.toLowerCase(),c=l.testStyles=s;Modernizr.addTest("formvalidation",function(){var n=a("form");if(!("checkValidity"in n&&"addEventListener"in n))return!1;if("reportValidity"in n)return!0;var t,o=!1;return Modernizr.formvalidationapi=!0,n.addEventListener("submit",function(n){(!e.opera||e.operamini)&&n.preventDefault(),n.stopPropagation()},!1),n.innerHTML='<input name="modTest" required="required" /><button></button>',c("#modernizr form{position:absolute;top:-99999em}",function(e){e.appendChild(n),t=n.getElementsByTagName("input")[0],t.addEventListener("invalid",function(e){o=!0,e.preventDefault(),e.stopPropagation()},!1),Modernizr.formvalidationmessage=!!t.validationMessage,n.getElementsByTagName("button")[0].click()}),o}),i(),delete l.addTest,delete l.addAsyncTest;for(var m=0;m<Modernizr._q.length;m++)Modernizr._q[m]();e.Modernizr=Modernizr}(window,document);
+  </script>
+
+  <script>
     function subForm(event) {
       var inputs = event.target.getElementsByTagName("input");
       for (var i = 0; i < inputs.length; i++) {
         var input = inputs[i];
         if (input.getAttribute('required') != null) {
+          
+          // alert(JSON.stringify(input.validationMessage))
+          
           var pattern = input.getAttribute('pattern');
           if ((pattern && !(new RegExp(pattern).test(input.value))) || !input.value.length) {
             event.preventDefault();
-            input.setAttribute('style', 'background-color:#F44336')
+            input.setAttribute('style', 'border-color:#F44336')
             alert('Password must match specified pattern');
+            return false;
+          }
+          
+          if (input.validationMessage === "Passwords Don't Match") {
+            event.preventDefault();
+            input.setAttribute('style', 'border-color:#F44336')
+            alert("Passwords Don't Match");
             return false;
           }
           input.setAttribute('style', '')
         }
       } 
-
-      event.preventDefault()
-      return false;
     }
    
-    if (typeof document.createElement( 'input' ).checkValidity == 'function') {
+    if (!Modernizr.formvalidation) {
       var forms = document.querySelectorAll('form');
       for (var i = 0; i < forms.length; i++) {
         var form = forms[i];
@@ -469,9 +480,8 @@
         form.addEventListener('submit', subForm);
       } 
     }
-
   </script>
-  
+
   <script>
     function getQueryString( field, url ) {
       var href = url ? url : window.location.href;
@@ -486,9 +496,8 @@
       var re = document.getElementById('redirect');
       re.value = decodeURIComponent(codedRedirect);
     }
-     
   </script>
-  
+
   <script>
     var password = document.getElementById("password")
     var confirm_password = document.getElementById("password2");
@@ -504,9 +513,9 @@
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
   </script>
-  
-<script>
-  (function(){
+
+  <script>
+    (function(){
       var sch=document.location.search.substr(1),
           ss=sch.split('&'),i,s,ks;
       for (i=0;i<ss.length;i++){
@@ -521,8 +530,8 @@
           }
       }
   })();
-
-</script>
+  </script>
 
 </body>
+
 </html>

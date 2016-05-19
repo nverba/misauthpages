@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>Make it Social | Login</title>
+  <title>Make it Social | Register</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE-edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Login to manage your group at Make it Social the group booking platform.">
+  <meta name="description" content="Register to manage your group at Make it Social the group booking platform.">
   <meta name="author" content="Make it Social">
   <link rel="icon" href="/favicon.ico">
-
-  <link href="login_oval_files/css_002.css" rel="stylesheet" type="text/css">
-  <link href="login_oval_files/css.css" rel="stylesheet" type="text/css">
   
+  <link href="register_oval_files/css_002.css" rel="stylesheet" type="text/css">
+  <link href="register_oval_files/css.css" rel="stylesheet" type="text/css">
+
   <style>
     body {
       font-family: 'Roboto', 'Noto', 'Open Sans', sans-serif;
@@ -100,14 +100,12 @@
          -moz-appearance: none;
               appearance: none;
       border-radius: 0;
-      color: #fff;
       font-size: 16px;
     }
     
     input,
     select,
     textarea {
-      color: #fff;
       font-size: 16px;
       -webkit-appearance: none;
          -moz-appearance: none;
@@ -410,152 +408,211 @@
     }
 
   </style>
-
 </head>
 
 <body>
   <div class="entire">
     <section class="loginreg">
-
+      
       <!--<div class="form-prompt">
-        <span class="prompt-text">Login</span>
+        <span class="prompt-text">Create an account</span>
       </div>-->
-
+      
       <div class="fields">
         {{if .Error}}
         <p class="error" style="color:red">{{.Error}}</p>
         {{end}}
-        <form action="/login" method="post" onsubmit="return onlogin()" class="main-form">
+        <form action="/register" method="post" class="main-form">
+        
           <input name="csrf" value="{{.Csrf}}" type="hidden">
           <input name="redirect_to" value="{{.Redirect_to}}" type="hidden">
           <input name="app_id" value="{{.App_id}}" type="hidden">
-          <input name="theme" value="{{.Theme}}" type="hidden">
           <input name="lang" value="{{.Lang}}" type="hidden">
+          <input name="theme" value="{{.Theme}}" type="hidden">
+
+          <div class="form-group">
+            <div class="form-input login">
+              <a href="/login" id="id_a">
+              
+                <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg" style="fill: #a9a9a9"><path d="M1600 1405q0 120-73 189.5t-194 69.5h-874q-121 0-194-69.5t-73-189.5q0-53 3.5-103.5t14-109 26.5-108.5 43-97.5 62-81 85.5-53.5 111.5-20q9 0 42 21.5t74.5 48 108 48 133.5 21.5 133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5t-271.5 112.5-271.5-112.5-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5z"></path></svg>
+
+                <span class="reg-text">Already have a Make it Social account?</span>
+                <span class="reg-sub-text">Click here for a quick login</span>
+              </a>
+            </div>
+            
+            <div class="form-input email">
+              <label>{{trans "EMAIL"}}</label>
+              <input placeholder="{{trans "EMAIL"}}" name="username" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,10}" required type="email">
+            </div>
+          </div>
 
           <div class="form-group">
             <div class="form-input">
-              <label>{{trans "EMAIL"}}</label>
-              <input placeholder="{{trans "EMAIL"}}" name="username" id="id_email" onchange="email_change()" type="email">
+              <label>{{trans "FIRST_NAME"}}</label>
+              <input placeholder="{{trans "FIRST_NAME"}}" name="first_name" required type="text">
             </div>
+            <div class="form-input">
+              <label>{{trans "LAST_NAME"}}</label>
+              <input placeholder="{{trans "LAST_NAME"}}" name="last_name" required type="text">
+            </div>
+          </div>
 
-            <div class="form-input loginOnly">
+          <div class="form-group">
+            <div class="form-input">
               <label>{{trans "PASSWORD"}}</label>
-              <input placeholder="{{trans "PASSWORD"}}" name="password" type="password">
+              <input placeholder="{{trans "PASSWORD"}}" id="password" name="password" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})" required type="password">
+            </div>
+
+            <div class="form-input">
+              <label>{{trans "REPEAT_PASS"}}</label>
+              <input placeholder="{{trans "REPEAT_PASS"}}" id="confirm_password" name="password2" required type="password">
             </div>
           </div>
-
-          <div class="alt-options">
-            
-            <div style="display: block;" class="register">
-              <a href="/register" id="id_a">
-                <span class="reg-text">Need an account?</span>
-                <span class="reg-sub-text">No problem, you can register here</span>
-              </a>
-            </div>
-            
-            <div class="reset loginOnly">
-              <a onclick="showReset()">
-                <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg" style="fill: #a9a9a9"><path d="M576 896q-159 0-271.5-112.5t-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5-112.5 271.5-271.5 112.5zm1077 320l249 249q9 9 9 23 0 13-9 22l-136 136q-9 9-22 9-14 0-23-9l-249-249-249 249q-9 9-23 9-13 0-22-9l-136-136q-9-9-9-22 0-14 9-23l249-249-249-249q-9-9-9-23 0-13 9-22l136-136q9-9 22-9 14 0 23 9l249 249 249-249q9-9 23-9 13 0 22 9l136 136q9 9 9 22 0 14-9 23zm-498 0l-181 181q-37 37-37 91 0 53 37 90l83 83q-21 3-44 3h-874q-121 0-194-69t-73-190q0-53 3.5-103.5t14-109 26.5-108.5 43-97.5 62-81 85.5-53.5 111.5-20q19 0 39 17 154 122 319 122t319-122q20-17 39-17 28 0 57 6-28 27-41 50t-13 56q0 54 37 91z"></path></svg>
-                <span class="reg-text">Forgot password?</span>
-                <span class="reg-sub-text">We'll send you a reset link</span>
-              </a>
-            </div>
+          
+          <div class="info">
+            <svg class="info-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.2 14.2"><path d="M13.2 3.5c.6 1.1 1 2.3 1 3.6 0 1.3-.3 2.5-1 3.6-.6 1.1-1.5 1.9-2.6 2.6-1.1.6-2.3 1-3.6 1-1.3 0-2.5-.3-3.6-1-1.1-.6-1.9-1.5-2.6-2.6C.3 9.6 0 8.4 0 7.1c0-1.3.3-2.5 1-3.6.6-1.1 1.4-1.9 2.5-2.5C4.6.4 5.8 0 7.1 0c1.3 0 2.5.3 3.6 1 1 .6 1.9 1.4 2.5 2.5zm-3.7 8V10c0-.1 0-.2-.1-.2H8.3V5c0-.1 0-.2-.1-.2s-.1-.1-.2-.1H5c-.1 0-.2 0-.2.1s-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1h.9v3H5c-.1 0-.2 0-.2.1 0 0-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1h4.1c.1 0 .2 0 .2-.1.1-.1.2-.2.2-.3zM8.3 3.3V1.8c0-.1 0-.2-.1-.2-.1-.1-.1-.1-.2-.1H6.2c-.1 0-.2 0-.2.1-.1 0-.1.1-.1.2v1.5c0 .1 0 .2.1.2.1.1.1.1.2.1H8c.1 0 .2 0 .2-.1.1-.1.1-.2.1-.2z"></path></svg>
+            Password requires at least 8 characters with at least 1 uppercase, 1 lowercase and 1 digit character.
           </div>
 
-          <div class="sub-wrapper loginOnly">
+          <div id="receiveMail">
+            <input class="toggle" id="subscribe" name="sem" type="checkbox">
+            <label for="subscribe"></label>
+            <span>I would like to receive the latest events, news and regular updates from Make it Social</span>
+          </div>
+  
+          <div class="sub-wrapper">
             <button type="submit" class="sub">
-              {{trans "LOGIN"}}
+              {{trans "REGISTER"}}
               <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z" fill="#fff"></path></svg>
             </button>
           </div>
+
         </form>
-        
-        <div class="sub-wrapper resetOnly">
-          <div id="reset-submit" class="reset-form-submit resetOnly">
-            <form action="/reset_request" method="post" class="toLeftS" onsubmit="return on_reset()">
-              <input name="csrf" value="{{.Csrf}}" type="hidden">
-              <!-- This redirect has been hijacked to supply the appropriate url to the email link !!! =[ -->
-              <input id="id_redirect2" name="redirect_to" value="https://components.makeitsocial.com/oval/?reset=1" type="hidden">
-              <input name="email" id="id_reset_email" type="hidden">
-              <input name="app_id" value="{{.App_id}}" type="hidden">
-              <input name="theme" value="oval2" type="hidden">
-              <input name="lang" value="{{.Lang}}" type="hidden">
-              <input class="reset-form-sub" value="{{trans "RESET_PASS"}}" type="submit">
-            </form>
-          </div>
-        </div>
       </div>
     </section>
   </div>
   
   <script>
-    function showReset() {
-      var loginElements = document.querySelectorAll(('.loginOnly'));
-      var resetElem = document.getElementById('reset-submit');
-      
-      for (var index = 0; index < loginElements.length; index++) {
-        var element = loginElements[index];
-        element.style.display = 'none';  
-      }
-      resetElem.style.display = 'block';
-      
+    /*! modernizr 3.3.1 (Custom Build) | MIT *
+		* http://modernizr.com/download/?-formvalidation !*/
+		!function(e,n,t){function o(e,n){return typeof e===n}function i(){var e,n,t,i,a,r,s;for(var l in d)if(d.hasOwnProperty(l)){if(e=[],n=d[l],n.name&&(e.push(n.name.toLowerCase()),n.options&&n.options.aliases&&n.options.aliases.length))for(t=0;t<n.options.aliases.length;t++)e.push(n.options.aliases[t].toLowerCase());for(i=o(n.fn,"function")?n.fn():n.fn,a=0;a<e.length;a++)r=e[a],s=r.split("."),1===s.length?Modernizr[s[0]]=i:(!Modernizr[s[0]]||Modernizr[s[0]]instanceof Boolean||(Modernizr[s[0]]=new Boolean(Modernizr[s[0]])),Modernizr[s[0]][s[1]]=i),f.push((i?"":"no-")+s.join("-"))}}function a(){return"function"!=typeof n.createElement?n.createElement(arguments[0]):u?n.createElementNS.call(n,"http://www.w3.org/2000/svg",arguments[0]):n.createElement.apply(n,arguments)}function r(){var e=n.body;return e||(e=a(u?"svg":"body"),e.fake=!0),e}function s(e,t,o,i){var s,d,l,f,u="modernizr",c=a("div"),m=r();if(parseInt(o,10))for(;o--;)l=a("div"),l.id=i?i[o]:u+(o+1),c.appendChild(l);return s=a("style"),s.type="text/css",s.id="s"+u,(m.fake?m:c).appendChild(s),m.appendChild(c),s.styleSheet?s.styleSheet.cssText=e:s.appendChild(n.createTextNode(e)),c.id=u,m.fake&&(m.style.background="",m.style.overflow="hidden",f=p.style.overflow,p.style.overflow="hidden",p.appendChild(m)),d=t(c,e),m.fake?(m.parentNode.removeChild(m),p.style.overflow=f,p.offsetHeight):c.parentNode.removeChild(c),!!d}var d=[],l={_version:"3.3.1",_config:{classPrefix:"",enableClasses:!0,enableJSClass:!0,usePrefixes:!0},_q:[],on:function(e,n){var t=this;setTimeout(function(){n(t[e])},0)},addTest:function(e,n,t){d.push({name:e,fn:n,options:t})},addAsyncTest:function(e){d.push({name:null,fn:e})}},Modernizr=function(){};Modernizr.prototype=l,Modernizr=new Modernizr;var f=[],p=n.documentElement,u="svg"===p.nodeName.toLowerCase(),c=l.testStyles=s;Modernizr.addTest("formvalidation",function(){var n=a("form");if(!("checkValidity"in n&&"addEventListener"in n))return!1;if("reportValidity"in n)return!0;var t,o=!1;return Modernizr.formvalidationapi=!0,n.addEventListener("submit",function(n){(!e.opera||e.operamini)&&n.preventDefault(),n.stopPropagation()},!1),n.innerHTML='<input name="modTest" required="required" /><button></button>',c("#modernizr form{position:absolute;top:-99999em}",function(e){e.appendChild(n),t=n.getElementsByTagName("input")[0],t.addEventListener("invalid",function(e){o=!0,e.preventDefault(),e.stopPropagation()},!1),Modernizr.formvalidationmessage=!!t.validationMessage,n.getElementsByTagName("button")[0].click()}),o}),i(),delete l.addTest,delete l.addAsyncTest;for(var m=0;m<Modernizr._q.length;m++)Modernizr._q[m]();e.Modernizr=Modernizr}(window,document);
+  </script>
+
+  <script>
+    
+    var feedback = {
+      text: "Input required",
+      email: "Must be valid email address",
+      password: "Password must be between 8 and 20 characters with at least one capital letter, one lower case letter and a number"
+    }
+    
+    function subForm(event) {
+      var inputs = event.target.getElementsByTagName("input");
+      for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+        if (input.getAttribute('required') != null) {
+					
+          if (input.validationMessage === "The passwords don't match, please try again") {
+            event.preventDefault();
+            input.setAttribute('style', 'border-color:#F44336')
+            alert("The passwords don't match, please try again");
+            return false;
+          }
+          
+          if (!input.value.length) {
+            event.preventDefault();
+            input.setAttribute('style', 'border-color:#F44336')
+            alert(feedback[input.type]);
+            return false;
+          }
+   
+          var pattern = input.getAttribute('pattern');
+          if ((pattern && !(new RegExp(pattern).test(input.value)))) {
+            event.preventDefault();
+            input.setAttribute('style', 'border-color:#F44336')
+            alert(feedback[input.type]);
+            return false;
+          }
+
+          input.setAttribute('style', '')
+        }
+      } 
+    }
+   
+    if (!Modernizr.formvalidation) {
+      var forms = document.querySelectorAll('form');
+      for (var i = 0; i < forms.length; i++) {
+        var form = forms[i];
+        console.log(form);
+        form.addEventListener('submit', subForm);
+      } 
     }
   </script>
   
-  
   <script>
-    
-    function getQueryString( field, url ) {
-      var href = url ? url : window.location.href;
-      var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
-      var string = reg.exec(href);
-      return string ? string[1] : null;
-    };
-    
-    var login = getQueryString('login_redirect');
-    console.log('Login redirect', login)
-    
+    var password = document.getElementById("password")
+    var confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+      if(password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
   </script>
+
 
   <script>
     (function(){
         var a = document.getElementById('id_a'),
             href = a.getAttribute('href');
         if (window === top.window){
-            a.parentNode.style.display = 'block';
+           // a.parentNode.style.display = 'inline-block';
         }
         if (href.indexOf('?')<0){
-            var r = location.search.replace('login=1','login=0');
+            var r = location.search.replace('login=0','login=1');
 			if (r.indexOf('error=')>=0){
-				var n = r.indexOf('error='), n2 = r.indexOf('&',n);
+				var n = r.indexOf('error='), n2 = r.indexOf('&', n);
 				r = r.substring(0,n)+r.substr(n2+1);
 			}
-			a.setAttribute('href', href + r);
-			copyhiddenparams();
+            a.setAttribute('href', href + r);
+            copyhiddenparams();
         }
+        var inps = document.querySelectorAll('input');
+        for (var i=0; i<inps.length; i++){
+            var inp = inps[i];
+            inp.addEventListener('mousedown', function(e){
+                var p = e.target;
+                if (p && p.className) p.className = p.className.replace('redbox','');
+            });
+        }
+        document.querySelector('form').addEventListener('submit', onsubmit);
     })();
-    
-	function onlogin(){
-		var d = document, q = 'querySelector', 
-			p = function(n){ return 'input[name="'+n+'"]' },
-			em = d[q](p('username')).value,
-			pw = d[q](p('password')).value;
-		return /^[^@]+@[^@]+$/.test(em) && pw.length >= 6;
-	}
-    
-	function email_change(){
-		var f = document.getElementById('id_email'), t = document.getElementById('id_reset_email');
-		t.value = f.value;
-	}
-    
-	function on_reset(){
-		var email = document.getElementById('id_reset_email').value;
-		if (/^[^@]+@[^@]+$/.test(email)){
-			var rd = document.getElementById('id_redirect2');
-			rd.value = rd.value + '?email=' + email;
-			return true;
-		}
-		return false;
+    function validpass(p){
+        return p.length > 7 && /[A-Z]+/.test(p) && /[a-z]+/.test(p) && /[0-9]+/.test(p);
+    }
+    function reden(e){
+        if (e) e.className = (e.className || '') + ' redbox'; 
+    }
+	function onsubmit(e){
+		var form = e.target,
+            em = form.username.value,
+            isem = /^[^@]+@[^@]+$/.test(em),
+            fn = form.first_name.value,
+			pw = form.password.value,
+            vpw = validpass(pw),
+			pw2 = form.password2.value,
+            spw = pw2 == pw ? true : false;
+        if (!isem) reden(form.username);
+        if (!fn) reden(form.first_name);
+        if (!vpw) reden(form.password);
+        if (!spw) reden(form.password2);
+		if (!(isem && vpw && spw)) e.preventDefault();
 	}
 function copyhiddenparams(){
   var ps=document.location.href;
