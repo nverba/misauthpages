@@ -8,9 +8,6 @@
   <meta name="description" content="Register to manage your group at Make it Social the group booking platform.">
   <meta name="author" content="Make it Social">
   <link rel="icon" href="/favicon.ico">
-  
-  <link href="register_oval_files/css_002.css" rel="stylesheet" type="text/css">
-  <link href="register_oval_files/css.css" rel="stylesheet" type="text/css">
 
   <style>
     body {
@@ -192,6 +189,10 @@
       font-size: 20px;
       cursor: pointer;
     }
+   
+    .sub:disabled {
+      opacity: 0.5;
+    }
     
     .sub svg {
       height: 24px;
@@ -218,7 +219,7 @@
               transform: translateY(1px);
     }
     
-    #receiveMail {
+    .toggleInputs {
       max-width: 635px;
       padding: 8px 12px;
       margin: 0 auto;
@@ -227,7 +228,7 @@
       position: relative;
     }
     
-    #receiveMail {
+    .toggleInputs {
       position: relative;
       padding-left: 38px;
     }
@@ -238,7 +239,7 @@
       left: 11px;
     }
     
-    #receiveMail label {
+    .toggleInputs label {
       cursor: pointer;
       position: absolute;
       width: 18px;
@@ -251,7 +252,7 @@
       border-radius: 2px;
     }
     
-    #receiveMail label:after {
+    .toggleInputs label:after {
       opacity: 0;
       filter: alpha(opacity=0);
       content: '';
@@ -269,12 +270,12 @@
               transform: rotate(-45deg);
     }
     
-    #receiveMail input[type=checkbox]:checked + label {
+    .toggleInputs input[type=checkbox]:checked + label {
       background-color: #87c7c7;
       border-color: #87c7c7;
     }
     
-    #receiveMail input[type=checkbox]:checked + label:after {
+    .toggleInputs input[type=checkbox]:checked + label:after {
       opacity: 1;
       filter: alpha(opacity=100);
     }
@@ -475,14 +476,20 @@
             Password requires at least 8 characters with at least 1 uppercase, 1 lowercase and 1 digit character.
           </div>
 
-          <div id="receiveMail">
+          <div class="toggleInputs">
             <input class="toggle" id="subscribe" name="sem" type="checkbox">
             <label for="subscribe"></label>
             <span>I would like to receive the latest events, news and regular updates from Make it Social</span>
           </div>
+          
+          <div class="toggleInputs">
+            <input class="toggle" id="terms" name="terms" type="checkbox">
+            <label for="terms"></label>
+            <span>I agree to the <a href="https://makeitsocial.com/terms.html">Terms of Use</a> and <a href="https://makeitsocial.com/data-use.html">Privacy Policy</a></span>
+          </div>
   
           <div class="sub-wrapper">
-            <button type="submit" class="sub">
+            <button type="submit" class="sub" id="sub">
               {{trans "REGISTER"}}
               <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z" fill="#fff"></path></svg>
             </button>
@@ -492,6 +499,15 @@
       </div>
     </section>
   </div>
+  
+  <script>
+    var terms = document.getElementById('terms');
+    var button = document.getElementById('sub');
+    button.disabled = true;
+    terms.addEventListener('change', function (e) {
+      button.disabled = !e.target.checked;
+    })
+  </script>
   
   <script>
     /*! modernizr 3.3.1 (Custom Build) | MIT *
